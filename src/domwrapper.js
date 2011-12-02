@@ -10,7 +10,12 @@
       if(!arg1) return this;
 
       context = (arg2) ? arg2 : document;
-      matches = context.querySelectorAll(arg1);
+      try {
+        matches = context.querySelectorAll(arg1);
+      }
+      catch (e) {
+        matches = [];
+      }
 
       // (iterable)
       if ('length' in matches) {
