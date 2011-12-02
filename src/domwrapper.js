@@ -5,6 +5,9 @@
   var DomWrapper = function() { return this.initialize.apply(this, arguments) }
   DomWrapper.prototype = {
     initialize: function(arg1, arg2) {
+      this.length = 0;
+      if(!arg1) return this;
+
       // (iterable)
       if ('length' in arg1) {
         for (var e = 0, l = arg1.length; e < l; e++)
