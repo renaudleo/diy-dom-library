@@ -5,19 +5,23 @@
   var DomWrapper = function() { return this.initialize.apply(this, arguments) }
   DomWrapper.prototype = {
     initialize: function(arg1, arg2) {
+      var context, matches;
       this.length = 0;
       if(!arg1) return this;
 
+      context = (arg2) ? arg2 : document;
+      matches = context.querySelectorAll(arg1);
+
       // (iterable)
-      if ('length' in arg1) {
-        for (var e = 0, l = arg1.length; e < l; e++)
-          this[e] = arg1[e]
-        this.length = arg1.length
+      if ('length' in matches) {
+        for (var e = 0, l = matches.length; e < l; e++)
+          this[e] = matches[e]
+        this.length = matches.length
 
       } else {
         // single element
         this.length = 1
-        this[0] = arg1
+        this[0] = matches[0]
       }
 
       return this
