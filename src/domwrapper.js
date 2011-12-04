@@ -14,7 +14,7 @@
         matches = context.querySelectorAll(arg1);
       }
       catch (e) {
-        matches = [];
+        matches = []; //Handle html insertion later
       }
 
       // (iterable)
