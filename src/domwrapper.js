@@ -57,7 +57,9 @@
     },
 
     // element manipulation
-    append: function() {
+    append: function(html) {
+      return (html === undefined) ? null :
+      this.each(function() { this.innerHTML = this.innerHTML + html });
     },
     prepend: function() {
     },
