@@ -5,6 +5,7 @@
   var DomWrapper = function() { return this.initialize.apply(this, arguments) }
   DomWrapper.prototype = {
     initialize: function(selector, context) {
+      var validElTypes = [1, 9, 11];
       var matches = [];
       this.length = 0;
       if(!selector) return this;
@@ -14,23 +15,25 @@
         matches = context.querySelectorAll(selector);
       }
       catch (e) {
-        //HTML string
-        var div = document.createElement('div');
-        div.innerHTML = selector;
-        for (var i = 0, l = div.children.length; i < l; i++)
-          matches[i] = div.children[i];
+        if(validElTypes.indexOf(selector.nodeType) == -1) {
+          //HTML string
+          var div = document.createElement('div');
+          div.innerHTML = selector;
+          for (var i = 0, l = div.children.length; i < l; i++)
+            matches[i] = div.children[i];
+        }
       }
 
       // (iterable)
-      if ('length' in matches) {
+      if (matches.length > 0) {
         for (var e = 0, l = matches.length; e < l; e++)
           this[e] = matches[e]
         this.length = matches.length
 
       } else {
-        // single element
+        // DOM node
         this.length = 1
-        this[0] = matches[0]
+        this[0] = selector
       }
 
       return this
