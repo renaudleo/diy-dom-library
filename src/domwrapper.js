@@ -4,19 +4,19 @@
   }
   var DomWrapper = function() { return this.initialize.apply(this, arguments) }
   DomWrapper.prototype = {
-    initialize: function(arg1, arg2) {
-      var context, matches = [];
+    initialize: function(selector, context) {
+      var matches = [];
       this.length = 0;
-      if(!arg1) return this;
+      if(!selector) return this;
+      if(!context) context = document
 
-      context = (arg2) ? arg2 : document;
       try {
-        matches = context.querySelectorAll(arg1);
+        matches = context.querySelectorAll(selector);
       }
       catch (e) {
         //HTML string
         var div = document.createElement('div');
-        div.innerHTML = arg1;
+        div.innerHTML = selector;
         for (var i = 0, l = div.children.length; i < l; i++)
           matches[i] = div.children[i];
       }
