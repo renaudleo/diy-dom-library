@@ -80,10 +80,21 @@
 
     // className
     addClass: function(classNames) {
+      return this.each(function(){
+        var curClasses = this.className, classesList = [];
+        var newClasses = classNames.split(/\s+/g);
+        newClasses.forEach(function(newClass) {
+          if(!$(this).hasClass(newClass))
+            classesList.push(newClass);
+        }, this)
+        this.className += (curClasses ? " " : "") + classesList.join(" ");
+      })
     },
     removeClass: function(classNames) {
     },
     hasClass: function(className) {
+      var pattern = new RegExp('(^|\\s)' + className + '(\\s|$)');
+      return pattern.test(this[0].className);
     },
     toggleClass: function(classNames) {
     },
