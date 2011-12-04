@@ -5,7 +5,7 @@
   var DomWrapper = function() { return this.initialize.apply(this, arguments) }
   DomWrapper.prototype = {
     initialize: function(arg1, arg2) {
-      var context, matches;
+      var context, matches = [];
       this.length = 0;
       if(!arg1) return this;
 
@@ -14,7 +14,11 @@
         matches = context.querySelectorAll(arg1);
       }
       catch (e) {
-        matches = []; //Handle html insertion later
+        //HTML string
+        var div = document.createElement('div');
+        div.innerHTML = arg1;
+        for (var i = 0, l = div.children.length; i < l; i++)
+          matches[i] = div.children[i];
       }
 
       // (iterable)
