@@ -66,7 +66,7 @@
     // element manipulation
     append: function(html) {
       return (html === undefined) ? null :
-      this.each(function() { this.innerHTML = this.innerHTML + html });
+      this.each(function() { this.appendChild(html) });
     },
     prepend: function() {
     },
