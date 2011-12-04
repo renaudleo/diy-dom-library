@@ -51,6 +51,9 @@
       })
     },
     text: function(text) {
+      this.each(function(i, el) {
+        el.textContent = text;
+      })
     },
 
     // element manipulation
