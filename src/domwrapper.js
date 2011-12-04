@@ -46,6 +46,9 @@
 
     // HTML
     html: function(html) {
+      this.each(function(i, el) {
+        el.innerHTML = html;
+      })
     },
     text: function(text) {
     },
