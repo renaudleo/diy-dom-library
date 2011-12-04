@@ -46,14 +46,14 @@
 
     // HTML
     html: function(html) {
-      this.each(function(i, el) {
-        el.innerHTML = html;
-      })
+    return (html === undefined) ?
+      (this.length > 0 ? this[0].innerHTML : null) :
+      this.each(function() { this.innerHTML = html });
     },
     text: function(text) {
-      this.each(function(i, el) {
-        el.textContent = text;
-      })
+      return (text === undefined) ?
+        (this.length > 0 ? this[0].textContent : null) :
+        this.each(function() { this.textContent = text });
     },
 
     // element manipulation
