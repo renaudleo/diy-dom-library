@@ -238,6 +238,9 @@
       $(elem).removeClass('bam')
       elem.className = elem.className.replace(/\s+/g, ' ').trim()
       equal(elem.className, 'foobar bazfoo quux shizzle_bam', 'Try to remove non-existing class.')
+
+      $(elem).removeClass()
+      equal(elem.className, '', 'Remove all classes.')
     })
 
     test('<tt>.hasClass()</tt>', function() {
