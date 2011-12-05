@@ -106,6 +106,12 @@
       return pattern.test(this[0].className);
     },
     toggleClass: function(classNames) {
+      return this.each(function(){
+        classNames.split(/\s+/g).forEach(function(curClass) {
+          var $this = $(this);
+          ($this.hasClass(curClass)) ? $this.removeClass(curClass) : $this.addClass(curClass)
+        }, this)
+      })
     },
 
     // element filtering
