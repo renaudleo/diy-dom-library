@@ -91,6 +91,15 @@
       })
     },
     removeClass: function(classNames) {
+      return this.each(function(){
+        if(!classNames) return this.className = '';
+        var classesList = this.className, pattern;
+        classNames.split(/\s+/g).forEach(function(curClass) {
+          pattern = new RegExp('(^|\\s)' + curClass + '(\\s|$)');
+          classesList = classesList.replace(pattern, " ");
+        });
+        this.className = classesList.trim();
+      })
     },
     hasClass: function(className) {
       var pattern = new RegExp('(^|\\s)' + className + '(\\s|$)');
