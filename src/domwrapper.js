@@ -76,6 +76,11 @@
     },
 
     remove: function() {
+      return this.each(function() {
+        if(this.parentNode != null) {
+          this.parentNode.removeChild(this);
+        }
+      })
     },
 
     // className
