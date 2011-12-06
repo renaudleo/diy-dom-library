@@ -9,6 +9,7 @@
       var matches = [];
       this.length = 0;
       if(!selector) return this;
+      if(selector instanceof DomWrapper) return selector;
       if(!context) context = document
 
       try {
