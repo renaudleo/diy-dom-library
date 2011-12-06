@@ -15,7 +15,12 @@
         matches = context.querySelectorAll(selector);
       }
       catch (e) {
-        if(validElTypes.indexOf(selector.nodeType) == -1) {
+        if(selector instanceof Object) {
+          //NodeList
+          for(var i = 0, l = selector.length; i < l; i++)
+            matches[i] = selector[i];
+        }
+        else if(validElTypes.indexOf(selector.nodeType) == -1) {
           //HTML string
           var div = document.createElement('div');
           div.innerHTML = selector;
