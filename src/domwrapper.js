@@ -154,6 +154,9 @@
 
     // CSS styles
     css: function(property, value) {
+      if(value === undefined && typeof property == 'string') {
+        return this[0].style[property] || getComputedStyle(this[0], null).getPropertyValue(property);
+      }
     },
 
     // events
